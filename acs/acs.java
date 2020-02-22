@@ -83,7 +83,7 @@ public class acs {
         }
  
         // solutions.removeAll(solutions);
-        System.out.println("///////////////////**///////////////////" + best.getFitness());
+       // System.out.println("///////////////////**///////////////////" + best.getFitness());
 
         for (int i = 0; i < var.pheromones.length; i++) {
             for (int j = 0; j < var.pheromones[0].length; j++) {
