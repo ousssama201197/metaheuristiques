@@ -5,27 +5,18 @@ import java.util.Random;
 
 public class acs {
 
-    float evaporation;
-    float pheromone;
-    float alpha;
-    float beta;
-    float ants;
+
+    float ants=15;
     float pheromones[][];
     float proba[][];
-    float dejavisite[][];
     ArrayList<solution> solutions;
     Integer[][] ensemble_clauses;
     int[][] couts;
-    int max_iteration;
-    Integer Endjob_ants;
     boolean find;
-
     value var;
 
     public acs(Integer[][] ensemble_clauses) {
         this.ensemble_clauses = ensemble_clauses;
-        this.ants = 30;
-        this.dejavisite = new float[75][2];
         solutions = new ArrayList<solution>();
         this.proba = new float[75][2];
         this.couts = new int[75][2];
@@ -35,15 +26,12 @@ public class acs {
                 pheromones[i][j] = (float) 0.1;
             }
         }
-        var = new value(proba, pheromones, ensemble_clauses, cout(), Endjob_ants);
-        // this.max_iteration = 700;
+        var = new value(proba, pheromones, ensemble_clauses, cout());
     }
 
     public boolean algo() {
-        int k = 0;
         solution solution = null;
         cout();
-        Random rand = new Random();
         Thread ant;
         find = false;
         while (!find) {
@@ -55,13 +43,8 @@ public class acs {
                 ant a = new ant(var, solution);
                 ant = new Thread(a);
                 ant.start();
-                // System.out.println("terminer");
-
             }
- 
             maj_pheromone_offline();
-
-            k++;
         }
         return false;
     }
@@ -70,7 +53,6 @@ public class acs {
         solution best = meilleurSolution();
         solutions.removeAll(solutions);
         solutions.add(best);
-     //    System.out.println();
         if (best.getFitness() == ensemble_clauses.length) {
             for (Thread t : Thread.getAllStackTraces().keySet()) {
                 if (t.getState() == Thread.State.RUNNABLE && !Thread.currentThread().getName().equals("main"))
@@ -82,8 +64,7 @@ public class acs {
 
         }
  
-        // solutions.removeAll(solutions);
-       // System.out.println("///////////////////**///////////////////" + best.getFitness());
+        System.out.println("///////////////////**///////////////////" + best.getFitness());
 
         for (int i = 0; i < var.pheromones.length; i++) {
             for (int j = 0; j < var.pheromones[0].length; j++) {
