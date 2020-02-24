@@ -1,13 +1,12 @@
-package acs;
+package acs_simple;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class acs {
 
-    float ants = 35;
+    float ants = 25;
     float pheromones[][];
     float proba[][];
     ArrayList<solution> solutions;
@@ -20,13 +19,13 @@ public class acs {
     float alpha;
     float beta;
     int cpt;
-    float q0 = (float) 0.5;
+    float q0 = (float) 0.45;
 
     public acs(Integer[][] ensemble_clauses) {
         this.pheromone = (float) 0.001;
         this.alpha = (float) 0.4;
         this.beta = (float) 0.6;
-        this.evaporation = (float) 0.6;
+        this.evaporation = (float) 0.45;
         this.ensemble_clauses = ensemble_clauses;
         this.ensemble_clauses = ensemble_clauses;
         solutions = new ArrayList<solution>();
@@ -44,6 +43,7 @@ public class acs {
         solution solution = null;
         cout();
         find = false;
+      //  this.q = (float)0.9;
         this.q = new Random().nextFloat();
         calcul_proba(q);
         while (!find) {
@@ -61,7 +61,7 @@ public class acs {
 
                 }
                 maj_pheromone_online();
-                this.q = new Random().nextFloat();
+                 this.q = new Random().nextFloat();
                 calcul_proba(q);
             }
 

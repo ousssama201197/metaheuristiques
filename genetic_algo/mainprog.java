@@ -5,7 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
 
-import acs.acs;
+import A_etoile.A_etoile;
+import acs_simple.acs;
 
 public class mainprog {
 
@@ -73,8 +74,9 @@ public class mainprog {
        // float Mutation_rate = (float) 0.04;
      //   float Crossover_rate = (float) 0.7;
       //  long timer = 200000000;
-        acs test = new acs(dataset);
-        boolean sol = test.algo();
+        //acs test = new acs(dataset);
+        //boolean sol = test.algo();
+        A_etoile.Algo_globale(dataset);
         // Genetic_algo test2 = new Genetic_algo(dataset,600);
         // System.out.println("GenCount : " +
         // test2.gen(t0,Mutation_rate,Crossover_rate,timer));
